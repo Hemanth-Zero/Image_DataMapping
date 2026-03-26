@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BookSpace Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f3f7fb;
+}
+
+/* Username Box */
+
+#userBox{
+    background:#2563eb;
+    color:white;
+    padding:25px;
+    font-size:22px;
+    font-weight:bold;
+    text-align:center;
+}
+
+/* Main container */
+
+#container{
+    padding:30px;
+    text-align:center;
+}
+
+/* Create Project Button */
+
+#createBtn{
+    margin-top:20px;
+    padding:12px 24px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    transition:0.2s;
+}
+
+#createBtn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+
+/* Projects Grid */
+
+#projects{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:20px;
+}
+
+.projectCard{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.06);
+    font-weight:bold;
+}
+
+/* Modal */
+
+#modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.3);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+#modalContent{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    width:320px;
+}
+
+#modalContent input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+#modalContent button{
+    margin-top:15px;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+#createProjectBtn{
+    background:#2563eb;
+    color:white;
+}
+
+#cancelBtn{
+    background:#e5e7eb;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Username Box -->
+
+<div id="userBox">
+Welcome, <span id="username">User</span>
+</div>
+
+<!-- Main -->
+
+<div id="container">
+
+<button id="createBtn" onclick="openModal()">Create Project</button>
+
+<div id="projects">
+
+<div class="projectCard">Manga Reader</div>
+<div class="projectCard">One Piece Archive</div>
+
+</div>
+
+</div>
+
+<!-- Modal -->
+
+<div id="modal">
+
+<div id="modalContent">
+
+<h3>Create Project</h3>
+
+<form action="/createProject" method="POST">
+
+<label>Project Name</label>
+<input type="text" name="projectName" required>
+
+<label>Select Image Folder</label>
+<input type="file" id="imageFolder" webkitdirectory multiple>
+
+<button id="createProjectBtn" type="submit">Create</button>
+<button id="cancelBtn" type="button" onclick="closeModal()">Cancel</button>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+
+function openModal(){
+    document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+</script>
+
+</body>
+</html>

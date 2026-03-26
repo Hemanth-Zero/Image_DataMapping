@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Annotation</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    margin:0;
+    background:#f3f7fb;
+}
+
+#imageList{
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+    gap:15px;
+}
+
+.thumb{
+    border:2px solid #ccc;
+    padding:5px;
+    cursor:pointer;
+}
+
+.thumb img{
+    width:100%;
+}
+
+#viewer{
+    display:none;
+    padding:20px;
+}
+
+#canvas{
+    border:2px solid #333;
+    cursor:crosshair;
+}
+
+</style>
+
+</head>
+<body>
+
+<h2 style="text-align:center">Image Annotation</h2>
+
+<!-- image thumbnails -->
+
+<div id="imageList"></div>
+
+
+<!-- viewer -->
+
+<div id="viewer">
+
+<button onclick="enableDraw()">Create Object</button>
+
+<select id="labelSelect">
+<option value="apple">Apple</option>
+<option value="tree">Tree</option>
+<option value="car">Car</option>
+<option value="person">Person</option>
+</select>
+
+<br><br>
+
+<canvas id="canvas"></canvas>
+
+</div>
+
+<script src="annotation.js">
+
+const imageList = document.getElementById("imageList")
+// example images (normally fetched from server)
+const images = [
+"images/img1.png",
+"images/img2.png",
+"images/img3.png"
+]
+
+images.forEach(src => {
+
+    const div = document.createElement("div")
+    div.className = "thumb"
+
+    const img = document.createElement("img")
+    img.src = src
+
+    div.appendChild(img)
+
+    div.onclick = () => openImage(src)
+
+    imageList.appendChild(div)
+})
+
+const viewer = document.getElementById("viewer")
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
+
+let img = new Image()
+
+function openImage(src){
+
+    viewer.style.display = "block"
+
+    img.onload = () => {
+
+        canvas.width = img.width
+        canvas.height = img.height
+
+        ctx.drawImage(img,0,0)
+
+    }
+
+    img.src = src
+}
+</script>
+
+</body>
+</html>

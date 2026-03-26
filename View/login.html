@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BookSpace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f3f7fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+#container{
+    width:360px;
+    padding:40px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+label{
+    font-size:14px;
+    font-weight:bold;
+    color:#374151;
+}
+
+input{
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #cbd5e1;
+    font-size:14px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 2px rgba(37,99,235,0.15);
+}
+
+button{
+    margin-top:10px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.switch{
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+}
+
+.switch a{
+    color:#2563eb;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.switch a:hover{
+    text-decoration:underline;
+}
+
+.hidden{
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+<h1>BookSpace</h1>
+
+<!-- LOGIN FORM -->
+
+<form id="loginForm" action="/login" method="POST">
+
+<label>Username</label>
+<input type="text" name="username" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit">Login</button>
+
+<div class="switch">
+Don't have an account? 
+<a onclick="showRegister()">Register</a>
+</div>
+
+</form>
+
+<!-- REGISTER FORM -->
+
+<form id="registerForm" class="hidden" action="/register" method="POST">
+
+<label>Username</label>
+<input type="text" name="username" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Password</label>
+<input type="password" name="password" required>
+
+<button type="submit">Register</button>
+
+<div class="switch">
+Already have an account? 
+<a onclick="showLogin()">Login</a>
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+function showRegister(){
+    document.getElementById("loginForm").classList.add("hidden");
+    document.getElementById("registerForm").classList.remove("hidden");
+}
+
+function showLogin(){
+    document.getElementById("registerForm").classList.add("hidden");
+    document.getElementById("loginForm").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>

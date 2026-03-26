@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { loginPage, registerPage, annotationPage } = require('../Controller/userController');
+const { loginPage, registerPage } = require('../Controller/userController');
 
-// User page routes
-router.get('/login', loginPage);
-router.get('/register', registerPage);
-router.get('/annotation', annotationPage);
+// User routes - POST requests for form submissions
+router.post('/login', loginPage);
+router.post('/register', registerPage);
 
 module.exports = router;

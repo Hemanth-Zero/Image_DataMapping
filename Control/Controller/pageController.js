@@ -1,7 +1,7 @@
 const path = require('path');
 
 const homePage = (req, res) => {
-    res.redirect('/user/login');
+    res.sendFile(path.join(__dirname, '../../View/login.html'));
 }
 
 const dashboardPage = (req, res) => {
@@ -12,4 +12,4 @@ const annotationPage = (req, res) => {
     res.sendFile(path.join(__dirname, '../../View/annotation.html'));
 }
 
-module.exports = { homePage,dashboardPage, annotationPage };
+module.exports = { homePage, dashboardPage, annotationPage };

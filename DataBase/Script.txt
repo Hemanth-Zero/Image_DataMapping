@@ -1,0 +1,35 @@
+CREATE DATABASE ProjectI ;
+    \c projecti 
+
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE projects (
+    project_id SERIAL PRIMARY KEY,
+    project_name VARCHAR(25) UNIQUE NOT NULL,
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE directory (
+    img_id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(project_id) ON DELETE CASCADE,
+    image BYTEA NOT NULL 
+);
+
+
+CREATE TABLE annotations (
+    annotation_id SERIAL PRIMARY KEY,
+    project_id INTEGER REFERENCES projects(project_id) ON DELETE CASCADE,
+    img_id INTEGER REFERENCES directory(img_id) ON DELETE CASCADE,
+    x_min INTEGER NOT NULL,
+    y_min INTEGER NOT NULL,
+    width INTEGER NOT NULL,
+    height INTEGER NOT NULL,
+    class_name VARCHAR(25) NOT NULL
+);
